@@ -1,3 +1,112 @@
-<div class="container">
-  <h1>{{ title }}</h1>
-</div>
+<main class="container-430" aria-label="Home screen">
+  <!-- Header -->
+  <header class="header">
+    <div>
+      <h1 class="typo-hero app-title">Foodgo</h1>
+      <p class="typo-subtitle app-subtitle">Order your favourite food!</p>
+    </div>
+    <div class="avatar">
+      <div class="avatar-bg"></div>
+      <img src="assets/figmaimages/figma_image_1_54.png" alt="User avatar" class="avatar-img">
+    </div>
+  </header>
+
+  <!-- Search + filter -->
+  <section class="search-section" aria-label="Search">
+    <div class="search-box shadow-2 radius-20">
+      <div class="search-left row">
+        <span class="icon search-icon" aria-hidden="true"></span>
+        <span class="typo-search search-placeholder">Search</span>
+      </div>
+      <button class="filter-btn bg-accent radius-20" aria-label="Filters">
+        <span class="icon sliders-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Category chips -->
+  <nav class="categories" aria-label="Categories">
+    <button
+      class="chip radius-20"
+      [class.bg-accent]="activeChip==='all'"
+      [class.shadow-1]="activeChip==='all'"
+      [class.active]="activeChip==='all'"
+      [class.bg-soft-2]="activeChip!=='all'"
+      (click)="setActiveChip('all')"
+      data-chip="all">
+      <span [class.typo-chip-on]="activeChip==='all'" [class.typo-chip-off]="activeChip!=='all'">All</span>
+    </button>
+    <button
+      class="chip radius-20"
+      [class.bg-accent]="activeChip==='combos'"
+      [class.shadow-1]="activeChip==='combos'"
+      [class.active]="activeChip==='combos'"
+      [class.bg-soft-2]="activeChip!=='combos'"
+      (click)="setActiveChip('combos')"
+      data-chip="combos">
+      <span [class.typo-chip-on]="activeChip==='combos'" [class.typo-chip-off]="activeChip!=='combos'">Combos</span>
+    </button>
+    <button
+      class="chip radius-20"
+      [class.bg-accent]="activeChip==='sliders'"
+      [class.shadow-1]="activeChip==='sliders'"
+      [class.active]="activeChip==='sliders'"
+      [class.bg-soft-2]="activeChip!=='sliders'"
+      (click)="setActiveChip('sliders')"
+      data-chip="sliders">
+      <span [class.typo-chip-on]="activeChip==='sliders'" [class.typo-chip-off]="activeChip!=='sliders'">Sliders</span>
+    </button>
+    <button
+      class="chip radius-20"
+      [class.bg-accent]="activeChip==='classic'"
+      [class.shadow-1]="activeChip==='classic'"
+      [class.active]="activeChip==='classic'"
+      [class.bg-soft-2]="activeChip!=='classic'"
+      (click)="setActiveChip('classic')"
+      data-chip="classic">
+      <span [class.typo-chip-on]="activeChip==='classic'" [class.typo-chip-off]="activeChip!=='classic'">Classic</span>
+    </button>
+  </nav>
+
+  <!-- Cards grid -->
+  <section class="cards grid-2" aria-label="Menu items">
+    <article class="card shadow-2 radius-20" *ngFor="let card of cards">
+      <div class="card-image-wrap">
+        <img [src]="card.image" [alt]="card.alt" class="card-image">
+        <div class="image-shadow" [ngClass]="card.shadowClass" aria-hidden="true"></div>
+        <button class="heart-btn" [attr.aria-label]="'Like ' + card.title" (click)="toggleLike(card, $event)">
+          <span class="icon heart-outline" aria-hidden="true" [ngStyle]="{'background': card.liked ? 'var(--color-ef2a39)' : 'var(--color-3c2f2f)'}"></span>
+        </button>
+      </div>
+      <h2 class="typo-card-title card-title" [innerHTML]="card.title"></h2>
+      <div class="rating row">
+        <span class="icon star-solid" aria-hidden="true"></span>
+        <span class="typo-rating">{{ card.rating }}</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav" aria-label="Bottom Navigation">
+    <div class="bottom-bar bg-accent">
+      <button class="nav-btn active" aria-label="Home">
+        <span class="icon home-icon" aria-hidden="true"></span>
+      </button>
+      <button class="nav-btn" aria-label="User">
+        <span class="icon user-icon" aria-hidden="true"></span>
+      </button>
+      <button class="nav-btn center-cta" aria-label="Create">
+        <span class="plus-wrap">
+          <span class="plus-line horizontal"></span>
+          <span class="plus-line vertical"></span>
+        </span>
+      </button>
+      <button class="nav-btn" aria-label="Comments">
+        <span class="icon comment-icon" aria-hidden="true"></span>
+      </button>
+      <button class="nav-btn" aria-label="Likes">
+        <span class="icon heart-solid" aria-hidden="true"></span>
+      </button>
+    </div>
+  </nav>
+</main>
